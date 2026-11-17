@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Diario de Amor - Para Roxana 💖</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #fff1f2, #ffe4e6, #fce7f3); color: #4c0519; margin: 0; padding: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-hand { font-family: 'Caveat', cursive; }
+        
+        @keyframes floatHeart {
+            0% { transform: translateY(0px) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-15px) scale(1.1); opacity: 1; }
+            100% { transform: translateY(-30px) scale(1); opacity: 0; }
+        }
+        .floating-heart { animation: floatHeart 3s ease-in-out infinite; }
+        
+        .diario-card {
+            background-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(225, 29, 72, 0.15);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+        }
+    </style>
+</head>
+<body class="p-4">
+
+    <!-- CORAZONES FLOTANTES DE FONDO -->
+    <div style="position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; opacity: 0.3;">
+        <div class="floating-heart" style="position: absolute; top: 10%; left: 10%; font-size: 28px;">❤</div>
+        <div class="floating-heart" style="position: absolute; top: 30%; right: 15%; font-size: 24px; animation-delay: 1s;">💖</div>
+        <div class="floating-heart" style="position: absolute; bottom: 20%; left: 20%; font-size: 32px; animation-delay: 2s;">✨</div>
+    </div>
+
+    <!-- CONTENEDOR GENERAL -->
+    <div style="position: relative; width: 100%; max-width: 440px; z-index: 10; display: flex; flex-direction: column; align-items: center;">
+        
+        <!-- FASE 1: SOBRE DE INICIO CON APERTURA DESDE EL CORAZÓN -->
+        <div id="vistaSobre" style="display: flex; flex-direction: column; align-items: center; width: 100%; padding: 20px 0; text-align: center;">
+            <div style="margin-bottom: 24px;">
+                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #db2777; font-weight: 600; background: #ffe4e6; padding: 6px 16px; border-radius: 999px;"> </span>
+                <h1 class="font-serif" style="font-size: 32px; font-weight: bold; color: #4c0519; margin-top: 16px; margin-bottom: 4px;">Roxana Ibarrola</h1>
+                <p style="font-size: 13px; color: rgba(159, 18, 57, 0.7); margin: 0;">un recorrido por nuestra historia </p>
+            </div>
+
+            <!-- SOBRE 3D INTERACTIVO -->
+            <div onclick="abrirSorpresa()" style="position: relative; width: 300px; height: 190px; background: linear-gradient(to bottom, #f43f5e, #e11d48); border-radius: 0 0 16px 16px; box-shadow: 0 20px 25px -5px rgba(225,29,72,0.3); display: flex; align-items: center; justify-content: center; border: 1px solid #fb7185; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                <!-- Sello de Corazón Central -->
+                <div style="width: 64px; height: 64px; background: white; border-radius: 50%; border: 2px solid #fda4af; display: flex; align-items: center; justify-content: center; color: #e11d48; font-size: 30px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);" class="animate-pulse">
+                    ❤
+                </div>
+            </div>
+        </div>
+
+        <!-- FASE 2: DIARIO DE 10 PÁGINAS (Oculto al inicio) -->
+        <div id="contenidoDiario" style="display: none; width: 100%;">
+            
+            <!-- REPRODUCTOR DE MÚSICA -->
+            <div style="background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); padding: 12px 16px; border-radius: 20px; box-shadow: 0 10px 25px rgba(225,29,72,0.1); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #ffe4e6;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://i.postimg.cc/J4s1vCwB/IMG-3838.jpg" style="width: 42px; height: 42px; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <div>
+                        <p style="font-size: 11px; font-weight: 600; color: #e11d38; margin: 0;"> C N C O </p>
+                        <p style="font-size: 12px; font-weight: bold; color: #1f2937; margin: 0;">TAN ENAMORADOS</p>
+                    </div>
+                </div>
+                <button onclick="toggleMusica()" id="btnPlayPausa" style="width: 36px; height: 36px; background: #e11d48; color: white; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; box-shadow: 0 4px 10px rgba(225,29,72,0.3);">
+                    ⏸
+                </button>
+            </div>
+
+            <!-- CAJA DEL DIARIO (10 PÁGINAS DETALLADAS) -->
+            <div class="diario-card" style="border-radius: 28px; padding: 24px; min-height: 520px; display: flex; flex-direction: column; justify-content: space-between;">
+                
+                <!-- ENCABEZADO DE PÁGINA -->
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ffe4e6; padding-bottom: 10px; margin-bottom: 16px;">
+                    <span class="font-serif" style="font-size: 11px; color: #e11d48; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;"></span>
+                    <span id="indicadorPagina" class="font-hand" style="font-size: 20px; color: #9f1239; font-weight: bold;">Página 1 de 10</span>
+                </div>
+
+                <!-- CONTENEDOR DE PÁGINAS -->
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    
+                    <!-- PÁGINA 1: PORTADA INTERIOR -->
+                    <div class="pagina-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;">
+                        <div style="width: 110px; height: 110px; border-radius: 50%; overflow: hidden; border: 4px solid #ffe4e6; box-shadow: 0 8px 16px rgba(225,29,72,0.15);">
+                            <img src="https://i.postimg.cc/SRPKwZ1R/IMG-0736.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h2 class="font-serif" style="font-size: 24px; font-weight: bold; color: #4c0519; margin: 0;">Nuestra Historia</h2>
+                        <p class="font-hand" style="font-size: 22px; color: #4b5563; margin: 0; max-width: 300px; line-height: 1.4;">
+                            Un espacio creado con mucho amor y dedicacion.
+                            cada detalle que a continuacion aparezca es tuyo. disfrutalo potopolila :)
+                        </p>
+                    </div>
+
+                    <!-- PÁGINA 2: MOMENTO 1 (Con foto oculta inicialmente) -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+                        <span style="font-size: 11px; color: #e11d48; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">24 de noviembre 2020</span>
+                        <h3 class="font-serif" style="font-size: 18px; font-weight: bold; color: #4c0519; margin: 0;"></h3>
+                        <p class="font-hand" style="font-size: 20px; color: #4b5563; margin: 0;">"Recuerdas el primer día que nos vimos? pues... te puedo refrescar la memoria si apretas el corazón "</p>
+                        
+                        <!-- FOTO OCULTA -->
+                        <div id="fotoCap1" style="display: none; width: 100%; height: 170px; background: #fff1f2; border-radius: 16px; overflow: hidden; border: 1px solid #ffe4e6; margin-top: 4px;">
+                            <img src="https://i.postimg.cc/d3sdqS97/9548d999-1e55-4e3e-a941-d9bd55cbcd79.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        
+                        <!-- BOTÓN CORAZÓN -->
+                        <button type="button" onclick="revelarFoto('fotoCap1', this)" style="background: #ffe4e6; border: 2px solid #fda4af; color: #e11d48; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 500;">
+                            ❤ 
+                        </button>
+                    </div>
+
+                    <!-- PÁGINA 3: MOMENTO 2 -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+                        <span style="font-size: 11px; color: #e11d48; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">28 NOVIEMBRE 2020 </span>
+                        <h3 class="font-serif" style="font-size: 18px; font-weight: bold; color: #4c0519; margin: 0;">Q U E L L O N
+                        </h3>
+                        <p class="font-hand" style="font-size: 20px; color: #4b5563; margin: 0;">"Recuerdas nuestras primeras veces? Puesss si no lo recuerdas aquí te dejo un refrescador de memoria. :P</p>
+                        
+                        <div id="fotoCap2" style="display: none; width: 100%; height: 170px; background: #fff1f2; border-radius: 16px; overflow: hidden; border: 1px solid #ffe4e6; margin-top: 4px;">
+                            <img src="https://i.postimg.cc/kGRVX3bg/IMG-0264.jpg
+" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        
+                        <button type="button" onclick="revelarFoto('fotoCap2', this)" style="background: #ffe4e6; border: 2px solid #fda4af; color: #e11d48; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 500;">
+                            ❤
+                        </button>
+                    </div>
+
+                    <!-- PÁGINA 4: MOMENTO 3 -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+                        <span style="font-size: 11px; color: #e11d48; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">04 ENERO 2021</span>
+                        <h3 class="font-serif" style="font-size: 18px; font-weight: bold; color: #4c0519; margin: 0;">RISAS Y MAS RISAS</h3>
+                        <p class="font-hand" style="font-size: 20px; color: #4b5563; margin: 0;">"Con esta foto sé que te acordaras de que nos reimos tanto xD"</p>
+                        
+                        <div id="fotoCap3" style="display: none; width: 103%; height: 230px; background: #fff1f2; border-radius: 16px; overflow: hidden; border: 1px solid #ffe4e6; margin-top: 4px;">
+                            <img src="https://i.postimg.cc/dtXbyMTY/IMG-1379.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        
+                        <button type="button" onclick="revelarFoto('fotoCap3', this)" style="background: #ffe4e6; border: 2px solid #fda4af; color: #e11d48; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 500;">
+                            ❤ Tocame 
+                        </button>
+                    </div>
+
+                    <!-- PÁGINA 5: MOMENTO 4 -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+                        <span style="font-size: 11px; color: #e11d48; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">5 JUNIO 2021</span>
+                        <h3 class="font-serif" style="font-size: 18px; font-weight: bold; color: #4c0519; margin: 0;">AVENTURAS</h3>
+                        <p class="font-hand" style="font-size: 20px; color: #4b5563; margin: 0;">"Esta creo que es una de nuestras fotos mas bonitas que nos hemos sacado, sé que piensas igual que yo "</p>
+                        
+                        <div id="fotoCap4" style="display: none; width: 100%; height: 170px; background: #fff1f2; border-radius: 16px; overflow: hidden; border: 1px solid #ffe4e6; margin-top: 4px;">
+                            <img src="https://i.postimg.cc/3xxZYWwB/IMG-6087.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        
+                        <button type="button" onclick="revelarFoto('fotoCap4', this)" style="background: #ffe4e6; border: 2px solid #fda4af; color: #e11d48; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 500;">
+                            ❤ click :P
+                        </button>
+                    </div>
+
+                    <!-- PÁGINA 6: MOMENTO 5 -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+                        <span style="font-size: 11px; color: #e11d48; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">1 OCTUBRE 2022</span>
+                        <h3 class="font-serif" style="font-size: 18px; font-weight: bold; color: #4c0519; margin: 0;">MUELLE DE LA LUZ</h3>
+                        <p class="font-hand" style="font-size: 20px; color: #4b5563; margin: 0;">Sin duda se camino harto, se paso calor, pero se disfruto cada paisaje</p>
+                        
+                        <div id="fotoCap5" style="display: none; width: 100%; height: 170px; background: #fff1f2; border-radius: 16px; overflow: hidden; border: 1px solid #ffe4e6; margin-top: 4px;">
+                            <img src="https://i.postimg.cc/RVBBsxZ8/IMG-5356.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        
+                        <button type="button" onclick="revelarFoto('fotoCap5', this)" style="background: #ffe4e6; border: 2px solid #fda4af; color: #e11d48; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 500;">
+                            ❤
+                        </button>
+                    </div>
+
+                    <!-- PÁGINA 7: MOMENTO 6 -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+                        <span style="font-size: 11px; color: #e11d48; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">5 FEBRERO 2023</span>
+                        <h3 class="font-serif" style="font-size: 18px; font-weight: bold; color: #4c0519; margin: 0;">DUHATAO</h3>
+                        <p class="font-hand" style="font-size: 20px; color: #4b5563; margin: 0;">"cuando ya no nos quedaba esperanzas se disfrutar, se disfruto por 100 "</p>
+                        
+                        <div id="fotoCap6" style="display: none; width: 100%; height: 170px; background: #fff1f2; border-radius: 16px; overflow: hidden; border: 1px solid #ffe4e6; margin-top: 4px;">
+                            <img src="https://i.postimg.cc/MTygQtQ2/6a0a2613-f1ae-4f8c-9cc9-64c92c78775c.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                        </div>
+                        
+                        <button type="button" onclick="revelarFoto('fotoCap6', this)" style="background: #ffe4e6; border: 2px solid #fda4af; color: #e11d48; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 500;">
+                            ❤
+                        </button>
+                    </div>
+
+                    <!-- PÁGINA 8: MOMENTO 7 -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+                        <span style="font-size: 11px; color: #e11d48; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">13 OCTUBRE 2024</span>
+                        <h3 class="font-serif" style="font-size: 18px; font-weight: bold; color: #4c0519; margin: 0;">CHANCHEOS NOCTURNO</h3>
+                        <p class="font-hand" style="font-size: 20px; color: #4b5563; margin: 0;">"Cuando tu saltes, ahí saltare contigo  xD  "</p>
+                        
+                        <div id="fotoCap7" style="display: none; width: 100%; height: 170px; background: #fff1f2; border-radius: 16px; overflow: hidden; border: 1px solid #ffe4e6; margin-top: 4px;">
+                            <img src="https://i.postimg.cc/RhPT2nH7/IMG-4686.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        
+                        <button type="button" onclick="revelarFoto('fotoCap7', this)" style="background: #ffe4e6; border: 2px solid #fda4af; color: #e11d48; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 500;">
+                            ❤
+                        </button>
+                    </div>
+
+                    <!-- PÁGINA 9: MOMENTO 8 -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+                        <span style="font-size: 11px; color: #e11d48; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">5 FEBRERO 2025</span>
+                        <h3 class="font-serif" style="font-size: 18px; font-weight: bold; color: #4c0519; margin: 0;">PASTAHUÉ</h3>
+                        <p class="font-hand" style="font-size: 20px; color: #4b5563; margin: 0;">"Cuando hiciste algo que con solo pensarlo te faltaba el aire, pero lo hiciste!"</p>
+                        
+                        <div id="fotoCap8" style="display: none; width: 100%; height: 170px; background: #fff1f2; border-radius: 16px; overflow: hidden; border: 1px solid #ffe4e6; margin-top: 4px;">
+                            <img src="https://i.postimg.cc/C5CZ9ynZ/IMG-7883.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        
+                        <button type="button" onclick="revelarFoto('fotoCap8', this)" style="background: #ffe4e6; border: 2px solid #fda4af; color: #e11d48; padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 500;">
+                            ❤
+                        </button>
+                    </div>
+
+                    <!-- PÁGINA 10: CARTA FINAL -->
+                    <div class="pagina-item" style="display: none; flex-direction: column; text-align: center; gap: 14px; padding: 10px;">
+                        
+                        <p class="font-hand" style="font-size: 22px; color: #374151; margin: 0; line-height: 1.5;">"Cada página de este recorrido guarda un pedacito de nuestra historia, de las risas y de los momentos que se quedan para siempre en el alma. Ver este álbum me recuerda lo afortunado que soy por tenerte a mi lado. Gracias por cada instante compartido... y ojalá que la vida nos regale muchos años más para seguir sumando recuerdos juntos. ¿Me acompañas a seguir escribiendo esta historia?"</p>
+<h3 class="font-serif" style="font-size: 22px; font-weight: bold; color: #4c0519; margin: 0;"></h3>
+                        <p class="font-serif" style="font-size: 13px; text-align: right; font-weight: bold; color: #9f1239; margin: 0;">potopolilo ❤️</p>
+                    </div>
+
+                </div>
+
+                <!-- BOTONES DE NAVEGACIÓN -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 14px; border-top: 1px solid #ffe4e6;">
+                    <button type="button" onclick="cambiarPagina(-1)" id="btnAnterior" disabled style="background: #ffe4e6; color: #9f1239; border: none; padding: 10px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; opacity: 0.3; transition: all 0.2s;">
+                        ← Anterior
+                    </button>
+                    <span class="font-hand" style="font-size: 18px; color: #9f1239;">Pasa las páginas</span>
+                    <button type="button" onclick="cambiarPagina(1)" id="btnSiguiente" style="background: #e11d48; color: white; border: none; padding: 10px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(225,29,72,0.3); transition: all 0.2s;">
+                        Siguiente →
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="musicaFondo" src="https://files.catbox.moe/i2s2iz.mp3" preload="auto" loop></audio>
+
+    <script>
+        const audio = document.getElementById('musicaFondo');
+        let paginaActual = 0;
+        const paginas = document.getElementsByClassName('pagina-item');
+        const totalPaginas = paginas.length;
+
+        function abrirSorpresa() {
+            audio.play().catch(e => console.log("Audio pausado por políticas del navegador", e));
+
+            const vistaSobre = document.getElementById('vistaSobre');
+            const contenidoDiario = document.getElementById('contenidoDiario');
+
+            vistaSobre.style.display = 'none';
+            contenidoDiario.style.display = 'block';
+        }
+
+        function cambiarPagina(direccion) {
+            paginas[paginaActual].style.display = 'none';
+            paginaActual += direccion;
+            
+            if (paginaActual < 0) paginaActual = 0;
+            if (paginaActual >= totalPaginas) paginaActual = totalPaginas - 1;
+
+            paginas[paginaActual].style.display = 'flex';
+
+            document.getElementById('indicadorPagina').textContent = `Página ${paginaActual + 1} de ${totalPaginas}`;
+            document.getElementById('btnAnterior').disabled = (paginaActual === 0);
+            document.getElementById('btnAnterior').style.opacity = (paginaActual === 0) ? '0.3' : '1';
+            
+            if(paginaActual === totalPaginas - 1) {
+                document.getElementById('btnSiguiente').textContent = 'Fin 💖';
+            } else {
+                document.getElementById('btnSiguiente').textContent = 'Siguiente →';
+            }
+        }
+
+        function toggleMusica() {
+            const btnPlayPausa = document.getElementById('btnPlayPausa');
+            if (audio.paused) {
+                audio.play();
+                btnPlayPausa.textContent = '⏸';
+            } else {
+                audio.pause();
+                btnPlayPausa.textContent = '▶';
+            }
+        }
+
+        function revelarFoto(idFoto, btn) {
+            const contenedorFoto = document.getElementById(idFoto);
+            if (contenedorFoto) {
+                contenedorFoto.style.display = 'block';
+                btn.style.display = 'none';
+            }
+        }
+    </script>
+    <style>
+      /* Oculta cualquier elemento flotante o insignia en la esquina inferior derecha */
+      iframe[src*="netlify"], div[style*="position: fixed"][style*="bottom"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+    </style>
+</body>
+</html>
